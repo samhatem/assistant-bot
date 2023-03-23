@@ -2,7 +2,6 @@ const Bottleneck = require("bottleneck");
 
 const { getAIVulnerabilityCheck } = require("./getVulnerabilityCheck");
 const { getVulnerabilityFix } = require("./getVulnerabilityFix");
-const { createJiraTickets } = require("./createJiraTickets");
 
 /**
  * If we try sending too many concurrent requests then we'll get rate-limited.
@@ -62,8 +61,6 @@ async function checkCodeTree({ tree, getChildren, getCode, dirPath }) {
    * seems unlikely enough
    */
   const filteredResult = result.filter(data => !!data).flat(20);
-
-  await createJiraTickets(filteredResult);
 
   return filteredResult;
 }

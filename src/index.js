@@ -1,14 +1,12 @@
 const { checkCodeTree } = require("./checkCodeTree");
+const { sendSummaryEmail } = require("./sendGrid");
 
 /**
  * This is the main entrypoint to your Probot app
  * @param {import('probot').Probot} app
  */
 module.exports = (app) => {
-  // Your code here
   app.log.info("App running!");
-
-  // TODO: endpoints to scan code for different issues
 
   app.on("push", async (context) => {
     console.log({ context, git: context.octokit.git, repo: context.payload.repository });
@@ -43,9 +41,7 @@ module.exports = (app) => {
 
       const result = await checkCodeTree({ tree, getChildren, getCode, dirPath: "." });
 
-      console.log({ result });
-
-      // TODO: check for docuementation + testing changes
+      await sendSummaryEmail(result, { ownerName: repo.owner.name, ownerEmail: repo.owner.email });
     } catch (e) {
       console.error("Error thrown fetching tree");
       console.log({ e });
