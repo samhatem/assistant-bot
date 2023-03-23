@@ -1,0 +1,37 @@
+{
+  "name": "ai-assistant",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI assistant to automate cleaning up your codebase",
+  "author": "@samhatem",
+  "license": "ISC",
+  "homepage": "https://github.com/samhatem/ai-assistant",
+  "keywords": [
+    "probot",
+    "github",
+    "probot-app"
+  ],
+  "scripts": {
+    "start": "probot run ./src/index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "atlassian-jwt": "^2.0.2",
+    "bottleneck": "^2.19.5",
+    "moment": "^2.29.4",
+    "node-fetch": "^3.3.1",
+    "probot": "^12.2.4"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "nock": "^13.0.5",
+    "smee-client": "^1.2.2"
+  },
+  "engines": {
+    "node": ">= 10.13.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 20000
+  }
+}
